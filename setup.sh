@@ -18,10 +18,12 @@ pip install flask_migrate
 pip install psycopg2-binary
 echo "--- Flask Installed Successfully ---"
 
-
 # Setting up environment variables
 export APP_SETTINGS="config.DevelopmentConfig"
 export DATABASE_URL="postgresql://localhost:5432/pet_day_care"
 export ENV=dev
 
+python manager.py db init
+python manager.py db migrate
+python manager.py db upgrade
 python app.py
