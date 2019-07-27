@@ -127,9 +127,9 @@ class Bookings(db.Model):
     __tablename__ = 'bookings'
 
     id = db.Column(db.Integer, primary_key=True)
-    customer_id = db.Column(db.Integer, nullable=False, db.ForeignKey('customer.id'))
-    employee_id = db.Column(db.Integer, nullable=False, db.ForeignKey('employee.id'))
-    pet_id = db.Column(db.Integer, nullable=False, db.ForeignKey('pet.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
+    employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'))
+    pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
     points = db.Column(db.Integer, nullable=False)
     amount = db.Column(db.Integer, nullable=False)
 
