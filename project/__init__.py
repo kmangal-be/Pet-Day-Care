@@ -1,4 +1,5 @@
 from flask import Flask
+import os
 
-app = Flask("project")
+app = Flask(__name__)
 from project.controller import *
