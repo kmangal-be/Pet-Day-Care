@@ -117,9 +117,9 @@ class PetType(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'name': self.type,
-            'color': self.size,
-            'breed': self.points
+            'type': self.type,
+            'size': self.size,
+            'points': self.points
         }
 
 
@@ -168,8 +168,8 @@ class Payments(db.Model):
 
     def __init__(self, id, booking_id, payment_status, payment_mode):
         self.id = id
-        self.booking_id = customer_id
-        self.payment_status = payment_status,
+        self.booking_id = booking_id
+        self.payment_status = payment_status
         self.payment_mode = payment_mode
 
     def __repr__(self):
