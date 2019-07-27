@@ -8,7 +8,7 @@ class Pet(db.Model):
     name = db.Column(db.String, nullable=False)
     color = db.Column(db.String, nullable=True)
     breed = db.Column(db.String, nullable=True)
-    pet_type_id = db.Column(db.Integer, db.ForeignKey=('pet_type.id'))
+    pet_type_id = db.Column(db.Integer, db.ForeignKey('pet_type.id'))
 
     def __init__(self, name, color, breed, pet_type_id):
         self.name = name
@@ -127,8 +127,8 @@ class Bookings(db.Model):
     __tablename__ = 'bookings'
 
     id = db.Column(db.Integer, primary_key=True)
-    customer_id = db.Column(db.Integer, nullable=False, db.ForeignKey=('customer.id'))
-    employee_id = db.Column(db.Integer, nullable=False, db.ForeignKey=('employee.id'))
+    customer_id = db.Column(db.Integer, nullable=False, db.ForeignKey('customer.id'))
+    employee_id = db.Column(db.Integer, nullable=False, db.ForeignKey('employee.id'))
     pet_id = db.Column(db.Integer, nullable=False, db.ForeignKey('pet.id'))
     points = db.Column(db.Integer, nullable=False)
     amount = db.Column(db.Integer, nullable=False)
@@ -160,7 +160,7 @@ class Payments(db.Model):
     __tablename__ = 'payments'
 
     id = db.Column(db.Integer, primary_key=True)
-    booking_id = db.Column(db.Integer, db.ForeignKey= ('bookings.id'))
+    booking_id = db.Column(db.Integer, db.ForeignKey('bookings.id'))
     payment_status = db.Column(db.String, nullable=False)
     payment_mode = db.Column(db.String, nullable=False)
 
