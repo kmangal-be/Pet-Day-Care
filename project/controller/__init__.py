@@ -1,3 +1,5 @@
 import os, glob
+from flask import Blueprint
 
-__all__ = [os.path.basename(f)[:-3] for f in glob.glob(os.path.dirname(__file__) + "/*.py")]
+bp = Blueprint('api', __name__)
+from project.controller import hello
