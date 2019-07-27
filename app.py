@@ -9,6 +9,7 @@ db = SQLAlchemy(app)
 from models import *
 
 if __name__ == '__main__':
+    db.create_all()
     if os.environ['ENV'] == 'dev':
         app.run(host="localhost", port=3000, debug=True)
     elif os.environ['ENV'] == 'prod':
