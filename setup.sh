@@ -16,6 +16,7 @@ pip install SQLAlchemy
 pip install flask_script
 pip install flask_migrate
 pip install psycopg2-binary
+pip install flask_marshmallow
 echo "--- Flask Installed Successfully ---"
 
 # Setting up environment variables

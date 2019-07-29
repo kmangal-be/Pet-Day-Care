@@ -1,4 +1,4 @@
-from app import db
+from project import db
 
 
 class Pet(db.Model):
@@ -30,45 +30,6 @@ class Pet(db.Model):
             'breed': self.breed,
             'pet_type_id': self.pet_type_id
         }
-
-
-class Employee(db.Model):
-    __tablename__ = 'employee'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False, unique=True)
-    mobile_no = db.Column(db.String, nullable=False, unique=True)
-    address = db.Column(db.String, nullable=False)
-    emergency_mobile_no = db.Column(db.String, nullable=True)
-    dob = db.Column(db.String, nullable=True)
-    # Have to replace with date type
-    hire_date = db.Column(db.Date, nullable=False)
-    end_date = db.Column(db.Date, nullable=False)
-
-    def __init__(self, name, mobile_no, address, emergency_mobile_no, dob, hire_date, end_date):
-        self.name = name
-        self.mobile_no = mobile_no
-        self.address = address
-        self.emergency_mobile_no = emergency_mobile_no
-        self.dob = dob
-        self.hire_date = hire_date
-        self.end_date = end_date
-
-    def __repr__(self):
-        return '<id {}>'.format(self.id)
-
-    def serialize(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'mobile_no': self.mobile_no,
-            'address': self.address,
-            'emergency_mobile_no': self.emergency_mobile_no,
-            'dob': self.emergency_mobile_no,
-            'hire_date': self.hire_date,
-            'end_date': self.end_date
-        }
-
 
 class Customer(db.Model):
     __tablename__ = 'customer'
