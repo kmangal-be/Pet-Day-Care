@@ -59,7 +59,7 @@ employees_schema = EmployeeSchema(many=True)
 
 # Employee On-boarding
 @app.route('/employee', methods=['POST'])
-def create():
+def create_employee():
     data = request.get_json(force=True)
     new_employee = Employee(data)
     db.session.add(new_employee)

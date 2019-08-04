@@ -14,12 +14,12 @@ class Pet(db.Model):
     breed = db.Column(db.String, nullable=True)
     pet_type_id = db.Column(db.Integer, db.ForeignKey('pet_type.id'))
 
-    def __init__(self, name, age, color, breed, pet_type_id):
-        self.name = name
-        self.age = age
-        self.color = color
-        self.breed = breed
-        self.pet_type_id = pet_type_id
+    def __init__(self, data):
+        self.name = data['name']
+        self.age = data['age']
+        self.color = data['color']
+        self.breed = data['breed']
+        self.pet_type_id = data['pet_type_id']
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
@@ -48,7 +48,7 @@ pets_schema = PetSchema(many=True)
 
 # Pet Creation
 @app.route('/pet', methods=['POST'])
-def create():
+def create_pet():
     data = request.get_json(force=True)
     new_pet = Pet(data)
     db.session.add(new_pet)
@@ -66,6 +66,6 @@ def get_all_pet():
 
 # Get Specific Pet
 @app.route("/pet/<id>", methods=['GET'])
-def pet_detail(id):
+def get_pet_detail(id):
     pet = Pet.query.get(id)
     return pet_schema.jsonify(pet)

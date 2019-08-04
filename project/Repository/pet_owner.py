@@ -13,11 +13,11 @@ class PetOwner(db.Model):
     address = db.Column(db.String, nullable=False)
     dob = db.Column(db.String, nullable=True)
 
-    def __init__(self, name, mobile_no, address, dob):
-        self.name = name
-        self.mobile_no = mobile_no
-        self.address = address
-        self.dob = dob
+    def __init__(self, data):
+        self.name = data['name']
+        self.mobile_no = data['mobile_no']
+        self.address = data['address']
+        self.dob = data['dob']
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
@@ -47,7 +47,7 @@ pet_owners_schema = PetOwnerSchema(many=True)
 
 # PetOwner Creation
 @app.route('/pet-owner', methods=['POST'])
-def create():
+def create_pet_owner():
     data = request.get_json(force=True)
     new_pet_owner = PetOwner(data)
     db.session.add(new_pet_owner)
@@ -57,7 +57,7 @@ def create():
 
 # Get All Pet Owners
 @app.route('/pet-owner', methods=['GET'])
-def get_all_employee():
+def get_all_pet_owners():
     all_pet_owner = PetOwner.query.all()
     result = pet_owner_schema.dump(all_pet_owner)
     return jsonify(result.data)
@@ -65,7 +65,7 @@ def get_all_employee():
 
 # Get Specific Pet Owner
 @app.route("/pet-owner/<id>", methods=['GET'])
-def pet_owner_detail(id):
+def get_pet_owner_detail(id):
     pet_owner = PetOwner.query.get(id)
     return pet_owner_schema.jsonify(pet_owner)
 
