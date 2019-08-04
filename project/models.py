@@ -1,36 +1,5 @@
 from project import db
 
-
-class Pet(db.Model):
-    __tablename__ = 'pet'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    age = db.Column(db.Integer, nullable=True)
-    color = db.Column(db.String, nullable=True)
-    breed = db.Column(db.String, nullable=True)
-    pet_type_id = db.Column(db.Integer, db.ForeignKey('pet_type.id'))
-
-    def __init__(self, name, age, color, breed, pet_type_id):
-        self.name = name
-        self.age = age
-        self.color = color
-        self.breed = breed
-        self.pet_type_id = pet_type_id
-
-    def __repr__(self):
-        return '<id {}>'.format(self.id)
-
-    def serialize(self):
-        return {
-            'id': self.id,
-            'age': self.age,
-            'name': self.name,
-            'color': self.color,
-            'breed': self.breed,
-            'pet_type_id': self.pet_type_id
-        }
-
 class Customer(db.Model):
     __tablename__ = 'customer'
 
