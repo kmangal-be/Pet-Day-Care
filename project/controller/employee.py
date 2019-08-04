@@ -2,6 +2,7 @@ from project import app
 from flask import render_template
 from flask import request, jsonify
 from project import db, ma
+import datetime
 
 
 # ================================================EMPLOYEE-TABLE-STRUCTURE===============================================
@@ -12,7 +13,7 @@ class Employee(db.Model):
     name = db.Column(db.String, nullable=False, unique=True)
     mobile_no = db.Column(db.String, nullable=False, unique=True)
     address = db.Column(db.String, nullable=False)
-    emergency_mobile_no = db.Column(db.String, nullable=True)
+    emergency_mobile_no = db.Column(db.String)
     dob = db.Column(db.String, nullable=True)
     # Have to replace with date type
     hire_date = db.Column(db.Date, nullable=False)
@@ -81,10 +82,17 @@ def employee_detail(id):
     return employee_schema.jsonify(employee)
 
 
+# Update Specific Employee
 @app.route("/employee/<id>", methods=['PUT'])
 def update_employee(id):
     employee = Employee.query.get(id)
     end_date = request.json['end_date']
-    employee.end_date = end_date
+    if employee.end_date is None:
+        employee.end_date = end_date
     db.session.commit()
     return employee_schema.jsonify(employee)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return "This Page was not found"
